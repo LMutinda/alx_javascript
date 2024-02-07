@@ -32,8 +32,8 @@ request.get(apiUrl, (error, response, body) => {
     });
 
     // Output the results
-    console.log('{');
+    
     console.log(JSON.stringify(completedTasksByUserId, null, 2));
-    console.log('}');
+    
   }
 });
