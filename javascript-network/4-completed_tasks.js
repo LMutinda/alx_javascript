@@ -32,11 +32,18 @@ request.get(apiUrl, (error, response, body) => {
     });
 
     // Output the results
-    
-    // Convert the object to a JSON string with single quotes
-    const jsonString = JSON.stringify(completedTasksByUserId, null, 2).replace(/"/g, "'");
+    const numItems = Object.keys(completedTasksByUserId).length;
+    if (numItems <=2){
+        console.log(JSON.stringify(completedTasksByUserId));
+    } else {
+        // Convert the object to a JSON string with single quotes
+        const jsonString = JSON.stringify(completedTasksByUserId, null, 2).replace(/"/g, "'");
 
-    // Print the JSON string
-    console.log(jsonString);
+        // Print the JSON string
+        console.log(jsonString);
+
+    }
+    
+    
   }
 });
