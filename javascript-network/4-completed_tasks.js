@@ -34,12 +34,12 @@ request.get(apiUrl, (error, response, body) => {
     // Output the results
     const numItems = Object.keys(completedTasksByUserId).length;
     if (numItems === 2){
-        let jsonOutput = '{';
+        let jsonOutput = '{ ';
         for (const userId in completedTasksByUserId) {
             jsonOutput += `'${userId}': ${completedTasksByUserId[userId]}, `;
             }
         // Remove the trailing comma and add the closing brace
-        jsonOutput = jsonOutput.replace(/,\s*$/, '') + '}';
+        jsonOutput = jsonOutput.replace(/,\s*$/, '') + ' }';
 
         console.log(jsonOutput);
     } else {
