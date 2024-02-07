@@ -31,16 +31,11 @@ request.get(apiUrl, (error, response, body) => {
       }
     });
 
-    // Manually construct the desired output format
-    let output = '{ ';
-    for (const userId in completedTasksByUserId) {
-      output += `'${userId}': ${completedTasksByUserId[userId]}, `;
-    }
-    // Remove the trailing comma and space
-    output = output.slice(0, -2);
-    output += ' }';
-
     // Output the results
-    console.log(output);
+    console.log('{');
+    for (const userId in completedTasksByUserId) {
+      console.log(`  '${userId}': ${completedTasksByUserId[userId]},`);
+    }
+    console.log('}');
   }
 });
