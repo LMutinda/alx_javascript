@@ -33,7 +33,10 @@ request.get(apiUrl, (error, response, body) => {
 
     // Output the results
     
-    console.log(JSON.stringify(completedTasksByUserId, null, 2));
-    
+    // Convert the object to a JSON string with single quotes
+    const jsonString = JSON.stringify(completedTasksByUserId).replace(/"/g, "'");
+
+    // Print the JSON string
+    console.log(jsonString);
   }
 });
