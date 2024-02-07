@@ -4,10 +4,10 @@
 const request = require('request');
 
 // Get the episode id from the command line argument
-const id = process.argv[2];
+const movieId = process.argv[2];
 
-// Get the URL from the command line argument
-const url = "https://swapi-api.alx-tools.com/api/films/${id}";
+// Construct the URL for the Star Wars API endpoint
+const url = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 
 // Make a GET request to the Star Wars API
 request.get(url, (error, response, body) => {
