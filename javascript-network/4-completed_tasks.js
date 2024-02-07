@@ -33,15 +33,15 @@ request.get(apiUrl, (error, response, body) => {
 
     // Output the results
     const numItems = Object.keys(completedTasksByUserId).length;
-    if (numItems <=2){
-        const jsonOutput = JSON.stringify(completedTasksByUserId, (key, value) => {
-            if (typeof key === 'string') {
-              return `'${key}'`; // Surround keys with single quotes
+    if (numItems = 2){
+        let jsonOutput = '{';
+        for (const userId in completedTasksByUserId) {
+            jsonOutput += `'${userId}': ${completedTasksByUserId[userId]}, `;
             }
-            return value;
-          });
-      
-          console.log(jsonOutput);
+        // Remove the trailing comma and add the closing brace
+        jsonOutput = jsonOutput.replace(/,\s*$/, '') + '}';
+
+        console.log(jsonOutput);
     } else {
         // Convert the object to a JSON string with single quotes
         const jsonString = JSON.stringify(completedTasksByUserId, null, 2).replace(/"/g, "'");
