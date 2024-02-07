@@ -33,7 +33,7 @@ request.get(apiUrl, (error, response, body) => {
 
     // Output the results
     const numItems = Object.keys(completedTasksByUserId).length;
-    if (numItems = 2){
+    if (numItems === 2){
         let jsonOutput = '{';
         for (const userId in completedTasksByUserId) {
             jsonOutput += `'${userId}': ${completedTasksByUserId[userId]}, `;
