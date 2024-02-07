@@ -22,7 +22,8 @@ request.get(url, (error, response, body) => {
     // Loop through each film
     for (const film of filmsData.results) {
       // Check if "Wedge Antilles" is present in the characters list for the film
-      if (film.characters.includes(`http://swapi.co/api/people/${characterId}/`)) {
+      if (film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`) || 
+            film.characters.includes(`http://swapi.co/api/people/${characterId}/`)) {
         // If present, increment the count
         count++;
       }
