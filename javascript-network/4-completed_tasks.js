@@ -33,9 +33,7 @@ request.get(apiUrl, (error, response, body) => {
 
     // Output the results
     console.log('{');
-    for (const userId in completedTasksByUserId) {
-      console.log(`  '${userId}': ${completedTasksByUserId[userId]},`);
-    }
+    console.log(JSON.stringify(completedTasksByUserId, null, 2));
     console.log('}');
   }
 });
