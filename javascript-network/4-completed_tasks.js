@@ -33,7 +33,7 @@ request.get(apiUrl, (error, response, body) => {
 
     // Print the number of completed tasks for each user ID
     for (const userId in completedTasksByUserId) {
-      console.log(`User ${userId}: ${completedTasksByUserId[userId]} completed tasks`);
+      console.log(`${userId}: ${completedTasksByUserId[userId]}`);
     }
   }
 });
