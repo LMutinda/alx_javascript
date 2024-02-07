@@ -34,7 +34,7 @@ request.get(apiUrl, (error, response, body) => {
     // Output the results
     
     // Convert the object to a JSON string with single quotes
-    const jsonString = JSON.stringify(completedTasksByUserId).replace(/"/g, "'");
+    const jsonString = JSON.stringify(completedTasksByUserId, null, 2).replace(/"/g, "'");
 
     // Print the JSON string
     console.log(jsonString);
