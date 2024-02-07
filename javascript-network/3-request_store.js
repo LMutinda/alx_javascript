@@ -18,9 +18,7 @@ request.get(url, (error, response, body) => {
     fs.writeFile(filePath, body, 'utf-8', (err) => {
       if (err) {
         console.error('Error writing to file:', err);
-      } else {
-        console.log(`Successfully saved the contents of ${url} to ${filePath}`);
-      }
+      } 
     });
   }
 });
