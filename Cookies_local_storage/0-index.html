@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookie Management</title>
+  <!-- Include JS Cookie library -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+
+</head>
+<body>
+    <h1>Login to the website</h1>
+  <input type="text" id="firstname" placeholder="First Name">
+  <input type="text" id="email" placeholder="Email">
+  <button onclick="setCookies()">Log me in</button>
+  <h1>Cookies</h1>
+  <button onclick="showCookies()">Show the cookies</button>
+  <div id="cookiesDisplay"></div>
+
+  <script>
+    function setCookies() {
+      var firstname = document.getElementById('firstname').value;
+      var email = document.getElementById('email').value;
+
+      // Using JS Cookie to set cookies
+      Cookies.set('firstname', firstname);
+      Cookies.set('email', email);
+    }
+
+    function showCookies() {
+      var cookiesParagraph = document.createElement('p');
+      cookiesParagraph.innerHTML = 'Cookies:<br>';
+
+      // Using JS Cookie to get all cookies
+      var cookies = Cookies.get();
+      Object.keys(cookies).forEach(cookieName => {
+        cookiesParagraph.innerHTML += `${cookieName}: ${cookies[cookieName]}<br>`;
+      });
+
+      document.getElementById('cookiesDisplay').appendChild(cookiesParagraph);
+    }
+  </script>
+</body>
+</html>
