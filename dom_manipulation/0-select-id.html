@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM Introduction</title>
+</head>
+<body>
+  <p id="myParagraph">This is a paragraph.</p>
+
+  <script>
+    // JavaScript code to modify the paragraph content
+    document.addEventListener('DOMContentLoaded', function() {
+      var paragraph = document.getElementById('myParagraph');
+      paragraph.textContent = 'I successfully updated this paragraph with JavaScript';
+    });
+  </script>
+</body>
+</html>
