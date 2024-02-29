@@ -27,15 +27,16 @@
 
     function showCookies() {
       var cookiesParagraph = document.createElement('p');
-      cookiesParagraph.innerHTML = 'Cookies:<br>';
-
-      // Using JS Cookie to get all cookies
-      var cookies = Cookies.get();
-      Object.keys(cookies).forEach(cookieName => {
-        cookiesParagraph.innerHTML += `${cookieName}: ${cookies[cookieName]}<br>`;
-      });
+      // Displaying Email and Firstname from cookies
+      cookiesParagraph.innerHTML = `Email: ${getCookie('email')} - Firstname: ${getCookie('firstname')}`;
 
       document.getElementById('cookiesDisplay').appendChild(cookiesParagraph);
+    }
+
+
+    function getCookie(name) {
+      var value = Cookies.get(name);
+      return value ? value : ''; // If the cookie does not exist, return an empty string
     }
   </script>
 </body>
