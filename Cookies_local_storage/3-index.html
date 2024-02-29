@@ -7,6 +7,11 @@
       font-style: italic;
       font-weight: normal;
       margin-top: 10px;
+      
+    }
+
+    a {
+      text-decoration: none;
     }
   </style>
   <!-- Include JS Cookie library -->
@@ -19,7 +24,7 @@
     <input type="text" id="email" placeholder="Email">
     <button onclick="setCookies()">Log me in</button>
   </div>
-  <div id="welcomeMessage" style="display: none;" class="welcome-message"></div>
+  <h1 id="welcomeMessage" style="display: none;"></h1> 
 
   <script>
     // Function to set cookies
@@ -62,7 +67,7 @@
         hideForm();
 
         var welcomeMessage = document.getElementById('welcomeMessage');
-        welcomeMessage.innerHTML = `Welcome: ${firstname} (<a href="#" onclick="deleteCookiesAndShowForm()">logout</a>)`;
+        welcomeMessage.innerHTML = `Welcome: ${firstname} (<a href="#" class="Welcome-message" onclick="deleteCookiesAndShowForm()">logout</a>)`;
         welcomeMessage.style.display = 'block';
       } else {
         // User is not logged in
