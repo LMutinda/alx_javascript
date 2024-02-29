@@ -37,12 +37,12 @@
       // Function to remove item from cart
       function removeItemFromCart(item) {
         var cart = getCartFromStorage();
-        if (cart[item] && cart[item] > 1) {
-            cart[item] -= 1;
-        } else {
+        //if (cart[item] && cart[item] > 1) {
+            //cart[item] -= 1;
+        //} else {
             // Otherwise, remove the entire item from the cart
-            delete cart[item];
-        }
+        delete cart[item];
+        //}
         updateCartInStorage(cart);
         displayCart();
       }
