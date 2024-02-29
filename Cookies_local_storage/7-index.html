@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Shopping Cart</title>
+</head>
+<body>
+  <script>
+    // Check if session storage is available
+    if (typeof(Storage) === 'undefined' || typeof(sessionStorage) === 'undefined') {
+      // Display alert if session storage is not supported
+      alert('Sorry, your browser does not support Web storage. Try again with a better one');
+    } else {
+      // Array of available items
+      var availableItems = ['Shampoo', 'Soap', 'Sponge', 'Water'];
+
+      // Function to parse cart from session storage
+      function getCartFromStorage() {
+        var cartString = sessionStorage.getItem('cart');
+        return cartString ? JSON.parse(cartString) : {};
+      }
+
+      // Function to update cart in session storage
+      function updateCartInStorage(cart) {
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+      }
+
+      // Function to add item to cart
+      function addItemToCart(item) {
+        var cart = getCartFromStorage();
+        cart[item] = cart[item] ? cart[item] + 1 : 1;
+        updateCartInStorage(cart);
+        displayCart();
+      }
+
+      // Function to remove item from cart
+      function removeItemFromCart(item) {
+        var cart = getCartFromStorage();
+        if (cart[item] && cart[item] > 1) {
+            cart[item] -= 1;
+        } else {
+            // Otherwise, remove the entire item from the cart
+            delete cart[item];
+        }
+        updateCartInStorage(cart);
+        displayCart();
+      }
+
+      // Function to clear cart
+      function clearCart() {
+        sessionStorage.removeItem('cart');
+        displayCart();
+      }
+
+      // Function to create store
+      function createStore() {
+        var h2 = document.createElement('h2');
+        h2.textContent = 'Available products:';
+        document.body.appendChild(h2);
+
+        var ul = document.createElement('ul');
+        for (var i = 0; i < availableItems.length; i++) {
+          var item = availableItems[i];
+          var li = document.createElement('li');
+          li.textContent = item;
+          li.addEventListener('click', function() {
+            addItemToCart(this.textContent);
+          });
+          ul.appendChild(li);
+        }
+        document.body.appendChild(ul);
+      }
+
+      // Function to display cart
+function displayCart() {
+    var cart = getCartFromStorage();
+    var cartDiv = document.getElementById('cartDiv');
+
+    // If cartDiv doesn't exist, create it
+    if (!cartDiv) {
+        cartDiv = document.createElement('div');
+        cartDiv.id = 'cartDiv';
+        document.body.appendChild(cartDiv);
+    }
+
+    // Clear previous content of cartDiv
+    cartDiv.innerHTML = '';
+
+    // Create and append h2 element for cart title
+    var h2 = document.createElement('h2');
+    h2.textContent = 'Your cart:';
+    cartDiv.appendChild(h2);
+
+    // Create and append ul element for cart items
+    var ul = document.createElement('ul');
+    if (Object.keys(cart).length === 0) {
+        var li = document.createElement('li');
+        li.textContent = 'Your cart is empty';
+        ul.appendChild(li);
+    } else {
+        for (var item in cart) {
+        var li = document.createElement('li');
+        li.textContent = `${item} x ${cart[item]} `;
+        var removeButton = document.createElement('button');
+        removeButton.textContent = '(remove)';
+        removeButton.dataset.item = item; // Store item name in data attribute
+        removeButton.addEventListener('click', function(event) {
+        removeItemFromCart(event.target.dataset.item);
+        });
+        li.appendChild(removeButton);
+        ul.appendChild(li);
+        }
+    }
+
+    // Create and append button to clear cart
+    var clearButton = document.createElement('button');
+    clearButton.textContent = 'Clear my cart';
+    clearButton.addEventListener('click', clearCart);
+    cartDiv.appendChild(ul);
+    cartDiv.appendChild(clearButton);
+}
+
+    // Create store and display cart initially
+      createStore();
+      displayCart();
+    }
+  </script>
+</body>
+</html>
