@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookie Management</title>
+  <style>
+    .welcome-message {
+      font-style: italic;
+      font-weight: normal;
+      margin-top: 10px;
+      
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+  <!-- Include JS Cookie library -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+</head>
+<body>
+  <div id="loginForm">
+    <h2>Login to the website</h2>
+    <input type="text" id="firstname" placeholder="First Name">
+    <input type="text" id="email" placeholder="Email">
+    <button onclick="setCookiesAndShowWelcomeMessage()">Log me in</button>
+  </div>
+  <h1 id="welcomeMessage" style="display: none;"></h1> 
+
+  <script>
+    // Function to set cookies
+    function setCookiesAndShowWelcomeMessage() {
+      var firstname = document.getElementById('firstname').value;
+      var email = document.getElementById('email').value;
+
+      // Using JS Cookie to set cookies
+      Cookies.set('firstname', firstname);
+      Cookies.set('email', email);
+
+      showWelcomeMessageOrForm();
+    }
+
+    // Function to delete cookies and show login form
+    function deleteCookiesAndShowForm() {
+      Cookies.remove('firstname');
+      Cookies.remove('email');
+
+      showForm();
+    }
+
+    // Function to show the login form
+    function showForm() {
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('welcomeMessage').style.display = 'none';
+    }
+
+    // Function to hide the login form
+    function hideForm() {
+      document.getElementById('loginForm').style.display = 'none';
+    }
+
+    // Function to show the welcome message or form based on user login status
+    function showWelcomeMessageOrForm() {
+      var firstname = Cookies.get('firstname');
+
+      if (firstname) {
+        // User is logged in
+        hideForm();
+
+        var welcomeMessage = document.getElementById('welcomeMessage');
+        welcomeMessage.innerHTML = `Welcome: ${firstname} (<a href="#" class="Welcome-message" onclick="deleteCookiesAndShowForm()">logout</a>)`;
+        welcomeMessage.style.display = 'block';
+      } else {
+        // User is not logged in
+        showForm();
+      }
+    }
+
+    // Initially show the welcome message or form
+    showWelcomeMessageOrForm();
+  </script>
+</body>
+</html>
